@@ -16,7 +16,7 @@ class CITestsUITests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+        continueAfterFailure = true
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
@@ -31,6 +31,18 @@ class CITestsUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertEqual("ab", "ac")
+    }
+    
+    func testClickMenu() {
+        let app = XCUIApplication()
+        let addButton = app.navigationBars["Master"].buttons["Add"]
+        addButton.tap()
+        let staticText = app.tables.cells.element(boundBy: 0)
+        staticText.tap()
+        app.navigationBars.buttons["Master"].tap()
+        addButton.tap()
+        staticText.tap()
     }
     
 }
